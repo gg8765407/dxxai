@@ -9,162 +9,23 @@
       position: fixed;
       top: 0;
       left: 0;
-  
-
-    for (let i = 1; i <= 219; i++) {
-        const img = new Image();
-        img.src = "png/a (" + i + ").png";
-        images.push(img);
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* 将canvas放到最底层 */
     }
 
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const scale = Math.min(canvas.width / images[currentImageIndex].width, canvas.height / images[currentImageIndex].height);
-        const width = images[currentImageIndex].width * scale;
-        const height = images[currentImageIndex].height * scale;
-        const x = (canvas.width - width) / 2;
-        const y = (canvas.height - height) / 2;
-        ctx.drawImage(images[currentImageIndex], x, y, width, height);
+    /* 隐藏滚动条 */
+    body {
+      overflow: hidden;
     }
+  </style>
+</head>
+<body>
+  <!-- 添加全屏的canvas元素 -->
+  <canvas id="myCanvas"></canvas>
+  <!-- 添加第二个canvas元素 -->
+  <canvas id="myCanvas2"></canvas>
 
-    function changeImage(index) {
-        currentImageIndex = index;
-        draw();
-    }
-
-    document.addEventListener("keydown", (event) => {
-        switch (event.keyCode) {
-            case 37:
-                if (currentImageIndex > 0) {
-                    changeImage(currentImageIndex - 1);
-                }
-                break;
-            case 39:
-                if (currentImageIndex < images.length - 1) {
-                    changeImage(currentImageIndex + 1);
-                }
-                break;
-        }
-    });
-
-    images[0].onload = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        setInterval(() => {
-            if (currentImageIndex < images.length - 1) {
-                currentImageIndex++;
-            } else {
-                currentImageIndex = 0;
-            }
-            draw();
-        }, 50);
-    };
-  </script>
-</body>
-</html>
-    const canvas2 = document.getElementById("myCanvas2");
-    const ctx2 = canvas2.getContext("2d");
-
-    const circles = [];
-    const circleRadius = 50;
-    const maxSpeed = 5;
-    const minSpeed = 1;
-    const circleCount = 30;
-
-    for (let i = 0; i < circleCount; i++) {
-        const circle = {
-            x: Math.random() * canvas2.width,
-            y: Math.random() * canvas2.height,
-            vx: Math.random() * (maxSpeed - minSpeed) + minSpeed,
-            vy: Math.random() * (maxSpeed - minSpeed) + minSpeed,
-            color: getRandomColor(),
-        };
-        circles.push(circle);
-    }
-
-    function getRandomColor() {
-        const colors = ["#FF6138", "#FFFF9D", "#BEEB9F", "#79BD8F", "#00A388"];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    function drawCircles() {
-        circles.forEach((circle) => {
-            ctx2.beginPath();
-            ctx2.arc(circle.x, circle.y, circleRadius, 0, 2 * Math.PI);
-            ctx2.fillStyle = circle.color;
-            ctx2.fill();
-        });
-    }
-
-    function moveCircles() {
-        circles.forEach((circle) => {
-            circle.x += circle.vx;
-            circle.y += circle.vy;
-
-            if (circle.x > canvas2.width + circleRadius) {
-                circle.x = -circleRadius;
-            } else if (circle.x < -circleRadius) {
-                circle.x = canvas2.width + circleRadius;
-            }
-
-            if (circle.y > canvas2.height + circleRadius) {
-                circle.y = -circleRadius;
-            } else if (circle.y < -circleRadius) {
-                circle.y = canvas2.height + circleRadius;
-            }
-        });
-    }
-
-    function draw() {
-        drawCircles();
-        moveCircles();
-        requestAnimationFrame(draw);
-    }
-
-    canvas2.width = window.innerWidth;
-    canvas2.height = window.innerHeight;
-    draw();
-    images[0].onload = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        setInterval(() => {
-            if (currentImageIndex < images.length - 1) {
-                currentImageIndex++;
-            } else {
-                currentImageIndex = 0;
-            }
-            draw();
-        }, 50);
-    };
-
-    // 添加第二个canvas元素
-    const canvas2 = document.getElementById("myCanvas2");
-    const ctx2 = canvas2.getContext("2d");
-
-    const gradient = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
-    gradient.addColorStop(0, "red");
-    gradient.addColorStop(0.5, "green");
-    gradient.addColorStop(1, "blue");
-
-    function draw2() {
-        ctx2.fillStyle = gradient;
-        ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
-    }
-
-    canvas2.width = window.innerWidth;
-    canvas2.height = window.innerHeight;
-
-    draw2();
-
-    window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas2.width = window.innerWidth;
-        canvas2.height = window.innerHeight;
-
-        draw();
-        draw2();
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
