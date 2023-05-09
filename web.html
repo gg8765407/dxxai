@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Canvas Demo</title>
-  <style>
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="myCanvas"></canvas>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas Demo</title>
+    <style>
+      /* 将body和html元素的高度设置为100% */
+      body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-  <script src="script.js"></script>
-</body>
+      canvas {
+        /* 将canvas元素的宽度和高度设置为100% */
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
+
+    <!-- 引入JS文件 -->
+    <script src="script.js"></script>
+  </body>
 </html>
