@@ -16,7 +16,12 @@ for (let i = 1; i <= 219; i++) {
 // 绘制当前图片到canvas上
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(images[currentImageIndex], 0, 0, canvas.width, canvas.height);
+    const scale = Math.min(canvas.width / images[currentImageIndex].width, canvas.height / images[currentImageIndex].height);
+    const width = images[currentImageIndex].width * scale;
+    const height = images[currentImageIndex].height * scale;
+    const x = (canvas.width - width) / 2;
+    const y = (canvas.height - height) / 2;
+    ctx.drawImage(images[currentImageIndex], x, y, width, height);
 }
 
 // 切换图片的函数
@@ -54,3 +59,4 @@ images[0].onload = () => {
         draw();
     }, 50);
 };
+
