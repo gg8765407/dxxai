@@ -1,9 +1,6 @@
 // 获取canvas元素和上下文对象
-const canvas1 = document.getElementById("myCanvas1");
-const ctx1 = canvas1.getContext("2d");
-
-const canvas2 = document.getElementById("myCanvas2");
-const ctx2 = canvas2.getContext("2d");
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 
 // 图片数组和当前显示的图片下标
 const images = [];
@@ -17,21 +14,15 @@ for (let i = 1; i <= 219; i++) {
 }
 
 // 绘制当前图片到canvas上
-function draw1() {
-    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-    ctx1.drawImage(images[currentImageIndex], 0, 0, canvas1.width, canvas1.height);
-}
-
-function draw2() {
-    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    ctx2.drawImage(images[currentImageIndex], 0, 0, canvas2.width, canvas2.height);
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images[currentImageIndex], 0, 0, canvas.width, canvas.height);
 }
 
 // 切换图片的函数
 function changeImage(index) {
     currentImageIndex = index;
-    draw1();
-    draw2();
+    draw();
 }
 
 // 添加键盘事件监听，左箭头键切换到上一张图片，右箭头键切换到下一张图片
@@ -52,17 +43,14 @@ document.addEventListener("keydown", (event) => {
 
 // 加载第一张图片并添加动画效果
 images[0].onload = () => {
-    canvas1.width = images[0].width;
-    canvas1.height = images[0].height;
-    canvas2.width = images[0].width;
-    canvas2.height = images[0].height;
+    canvas.width = images[0].width;
+    canvas.height = images[0].height;
     setInterval(() => {
         if (currentImageIndex < images.length - 1) {
             currentImageIndex++;
         } else {
             currentImageIndex = 0;
         }
-        draw1();
-        draw2();
+        draw();
     }, 50);
 };
