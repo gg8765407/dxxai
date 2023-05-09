@@ -13,6 +13,11 @@
       height: 100%;
       z-index: -1; /* 将canvas放到最底层 */
     }
+
+    /* 隐藏滚动条 */
+    body {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -63,8 +68,8 @@
     });
 
     images[0].onload = () => {
-        canvas.width = images[0].width;
-        canvas.height = images[0].height;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         setInterval(() => {
             if (currentImageIndex < images.length - 1) {
                 currentImageIndex++;
